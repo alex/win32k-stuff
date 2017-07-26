@@ -65,7 +65,6 @@ def main(path, xul_frames, stacks, filter, exclude):
         print("\n".join("    " + s for s in stack))
         print()
         print()
-    # pprint.pprint(c.most_common(stacks))
 
 
 if __name__ == "__main__":
