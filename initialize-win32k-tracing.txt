@@ -1,0 +1,19 @@
+* Set up logging to a file
+.logappend C:\Users\alex_gaynor\Desktop\win32k-ng\win32k-log.txt
+
+* We want to debug our children. Strictly speaking we don't even care about
+* debugging ourselves!
+.childdbg 1
+
+* Load up the JS provider
+.load jsprovider.dll
+
+* Set up an exception handler for initial breakpoint to set up tracing
+sxe -c ".scriptrun C:\\Users\\alex_gaynor\\Desktop\\win32k-ng\\win32k-tracing.js; g" ibp
+* Ignore all other exceptions (TODO: should this be `sxd *`?)
+sxe -c "g" *
+* Ignore end process
+sxd epr
+
+* And we're of!
+gc

@@ -9,27 +9,17 @@ process.
 
 To that end, the rough way to use this is:
 
-```shell
-$ python generate-win32k-command-script.py win32k-syscall.txt generated-command-script.txt
-```
-
-This will give you a WinDbg command script which you can then use on WinDbg.
-
-Next, start firefox with `./mach run`. Using Process Explorer, identity one that
-is a content process (you may want to set the number of content processes used
-to one for simplicity).
-
-Now, attach to that process with WinDbg and setup the process:
+Run Firefox with (update paths as appropriate for your system):
 
 ```
-$$<C:\Path\To\generated-command-script.txt
-.logopen C:\Path\To\win32k-output-log.txt
-g
+./mach run \
+    --debugger="C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\windbg.exe" \
+    --debugger-args="-c '\$\$<C:\Users\alex_gaynor\Desktop\win32k-ng\initialize-win32k-tracing.txt'"
 ```
 
 Now you can browse around a log of all the win32k syscalls will be generated.
 
-Once you're done, you can close the browser and WinDbg. And switch over to your
+Once you're done, you can close the browser and WinDbg and switch over to your
 console:
 
 ```shell
@@ -46,3 +36,5 @@ stacks.
 
 You can also use `--filter=WORD` and `--exclude=WORD` to restrict yourself to
 only stacks that do or do not include a frame containing the specified `WORD.`
+
+This same strategy works with `./mach mochitest`.
