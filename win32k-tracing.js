@@ -1173,7 +1173,7 @@ function invokeScript() {
             continue;
         }
         _executeCommand(
-            `bp WIN32U! ${syscall} ".echo '===WIN32K-START==='; k; .echo '===WIN32K-END==='; g"`
+            `bp WIN32U!${syscall} ".echo '===WIN32K-START==='; k; .echo '===WIN32K-END==='; g"`
         );
     }
 }
