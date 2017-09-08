@@ -6,7 +6,10 @@ const EXCLUDED_WIN32K_SYSCALLS = [
     // We're already aware that they're an issue, so don't log them for now.
     "NtUserPeekMessage",
     "NtUserValidateHandleSecure",
-    "NtUserPostMessage"
+    "NtUserPostMessage",
+
+    // Called on every vsync tick.
+    "NtGdiDdDDIGetDeviceState"
 ];
 
 const WIN32K_SYSCALLS = [
@@ -1145,7 +1148,7 @@ const WIN32K_SYSCALLS = [
     "NtUserWindowFromPoint",
     "NtUserYieldTask",
     "NtValidateCompositionSurfaceHandle",
-    "NtVisualCaptureBits",
+    "NtVisualCaptureBits"
 ];
 
 function _executeCommand(cmd) {
