@@ -1,9 +1,5 @@
 "use strict";
 
-function _executeCommand(cmd) {
-    host.namespace.Debugger.Utility.Control.ExecuteCommand(cmd);
-}
-
 const EXCLUDED_WIN32K_SYSCALLS = [
     // These are all called from the core event loop, and are thus incredibly
     // high volume, making the browser basically unusable if they're logged.
@@ -23,6 +19,10 @@ const WIN32K_SYSCALLS = [
     "NtUserGetDisplayConfigBufferSizes",
     "NtUserDisplayConfigGetDeviceInfo"
 ];
+
+function _executeCommand(cmd) {
+    host.namespace.Debugger.Utility.Control.ExecuteCommand(cmd);
+}
 
 function invokeScript() {
     var cl = host.currentProcess.Environment.EnvironmentBlock.ProcessParameters.CommandLine.ToDisplayString();
