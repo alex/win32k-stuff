@@ -14,7 +14,7 @@ Run Firefox with (update paths as appropriate for your system):
 ```
 ./mach run \
     --debugger="C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\windbg.exe" \
-    --debugger-args="-c '\$\$<C:\Users\alex_gaynor\Desktop\win32k-ng\initialize-win32k-tracing.txt'"
+    --debugger-args="-c '\$\$<C:\Users\alex_gaynor\Desktop\win32k\initialize-win32k-tracing.txt'"
 ```
 
 Now you can browse around a log of all the win32k syscalls will be generated.
