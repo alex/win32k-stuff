@@ -9,7 +9,8 @@ process.
 
 To that end, the rough way to use this is:
 
-Run Firefox with (update paths as appropriate for your system):
+Run Firefox with (update paths as appropriate for your system; you'll need to
+update `initialize-win32k-tracing.txt` as well):
 
 ```
 ./mach run \
