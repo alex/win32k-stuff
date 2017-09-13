@@ -14,9 +14,16 @@ update `initialize-win32k-tracing.txt` as well):
 
 ```
 ./mach run \
-    --debugger="C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\windbg.exe" \
+    --debugger="C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\windbg.exe" \
     --debugger-args="-c '\$\$<C:\Users\alex_gaynor\Desktop\win32k\initialize-win32k-tracing.txt'"
 ```
+
+If you're using a 32-bit Firefox, you can replace `x64` with `x86`.
+
+If you'd like to use the latest WinDbgX preview, you can instead pass:
+`--debugger="C:\Users\alex_gaynor\AppData\Local\Microsoft\WindowsApps\WinDbgX.exe"`
+(note that there's a bug that will cause the initial script to not run, so
+you'll have to run it manually).
 
 Now you can browse around a log of all the win32k syscalls will be generated.
 
