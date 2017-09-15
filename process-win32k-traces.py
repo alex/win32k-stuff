@@ -34,9 +34,9 @@ def extract_frames(stack, xul_frames):
 @click.argument("path")
 @click.option("--xul-frames", default=None, type=click.INT)
 @click.option("--stacks", default=None, type=click.INT)
-@click.option("--filter", default=None, multiple=True)
+@click.option("--select", default=None, multiple=True)
 @click.option("--exclude", default=None, multiple=True)
-def main(path, xul_frames, stacks, filter, exclude):
+def main(path, xul_frames, stacks, select, exclude):
     with open(path) as f:
         lines = [line.strip() for line in f]
 
@@ -54,7 +54,7 @@ def main(path, xul_frames, stacks, filter, exclude):
 
     c = collections.Counter()
     for section in sections:
-        if filter and not any(any(f in s for f in filter) for s in section):
+        if select and not any(any(f in s for f in select) for s in section):
             continue
         if exclude and any(any(e in s for e in exclude) for s in section):
             continue

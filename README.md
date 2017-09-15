@@ -42,7 +42,7 @@ You can use `--xul-frames=N` to get more complete stack traces (at the risk of
 causing similar stacks to no longer merge), and `--stacks=N` to show more
 stacks.
 
-You can also use `--filter=WORD` and `--exclude=WORD` to restrict yourself to
+You can also use `--select=WORD` and `--exclude=WORD` to restrict yourself to
 only stacks that do or do not include a frame containing the specified `WORD.`
 
 This same strategy works with `./mach mochitest`.
