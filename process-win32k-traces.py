@@ -16,7 +16,7 @@ def extract_frames(stack, xul_frames):
     # Set to true once we see our first `xul` frame.
     xul_found = False
     frames = []
-    while xul_frames > 0 and idx < len(stack):
+    while (xul_frames is None or xul_frames > 0) and idx < len(stack):
         line = stack[idx].split()
         idx += 1
         if line[1:3] == ['(Inline', 'Function)']:
@@ -25,15 +25,15 @@ def extract_frames(stack, xul_frames):
             frames.append(line[3])
         if frames[-1].startswith("xul!"):
             xul_found = True
-        if xul_found:
+        if xul_found and xul_frames is not None:
             xul_frames -= 1
     return frames
 
 
 @click.command()
 @click.argument("path")
-@click.option("--xul-frames", default=3, type=click.INT)
-@click.option("--stacks", default=5, type=click.INT)
+@click.option("--xul-frames", default=None, type=click.INT)
+@click.option("--stacks", default=None, type=click.INT)
 @click.option("--filter", default=None, multiple=True)
 @click.option("--exclude", default=None, multiple=True)
 def main(path, xul_frames, stacks, filter, exclude):
