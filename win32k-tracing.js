@@ -1155,11 +1155,25 @@ function _executeCommand(cmd) {
     host.namespace.Debugger.Utility.Control.ExecuteCommand(cmd);
 }
 
+function decimalBufferToString(buf, len) {
+    var str = "";
+
+    for (let i = 0; i < len; ++i) {
+        str += String.fromCharCode(buf[i]);
+    }
+
+    return str;
+}
+
 function invokeScript() {
-    var cl = host.currentProcess.Environment.EnvironmentBlock.ProcessParameters.CommandLine.ToDisplayString();
+    let cl = decimalBufferToString(
+        host.currentProcess.Environment.EnvironmentBlock.ProcessParameters.CommandLine.Buffer,
+        host.currentProcess.Environment.EnvironmentBlock.ProcessParameters.CommandLine.Length
+    );
+
     // If the process is not a content process (e.g. parent or GPU), don't set
     // up our breakpoints.
-    if (cl.slice(-5, -1) !== " tab") {
+    if (cl.includes(" tab")) {
         return;
     }
     for (var syscall of WIN32K_SYSCALLS) {
