@@ -1322,7 +1322,7 @@ function invokeScript() {
 
     // If the process is not a content process (e.g. parent or GPU), don't set
     // up our breakpoints.
-    if (cl.includes(" tab")) {
+    if (!cl.includes(" tab")) {
         return;
     }
     for (var syscall of WIN32K_SYSCALLS) {
